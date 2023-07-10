@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, TextField, Divider } from '@mui/material';
+import { Container, TextField } from '@mui/material';
+import Carousel from './Carousel';
 
 const Content = ({darkMode}) => {
 
@@ -11,6 +12,8 @@ const Content = ({darkMode}) => {
   
 
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+
+  
   
 
   const handleSubmit = (e) =>{
@@ -45,34 +48,26 @@ const Content = ({darkMode}) => {
   })
   console.log(definitions);
 
-    const renderDefinitions = definitions.map(definition =>{
-        return <div>
-          <p style={fontStyles}>{definition}</p>
-          <Divider />
-          </div>
-      })
-        
-
       const handleChange = (e) =>{
         setWord(e.target.value);
       }
 
-      
 
     return ( 
         <Container>
-          <h1 className="large-word-heading" style={fontStyles}>{word}</h1>
+          <h1 className="large-word-heading" style={fontStyles}>{word? word: "START bY TYpInG a WORd.."}</h1>
             <form onSubmit={handleSubmit} className="input-form">
         
                 <TextField id="outlined-basic" label="Enter a word" variant="outlined" name="word" onChange={handleChange} /><br /><br />
                 <button>Search</button>
 
             </form>
+            
             {displaySubheading && 
             <Container id="meaning-display">
-              <h2 style={fontStyles}> Here are some definitions:</h2>
+              <h2 style={fontStyles} className="definitions-heading"> Here are some definitions</h2>
                 <div className="meanings">
-                  {renderDefinitions}
+                  <Carousel definitions = {definitions} darkMode = {darkMode}/>
                 </div>
                
             </Container>

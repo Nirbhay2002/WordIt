@@ -7,6 +7,7 @@ body{
 }
 .App{
   min-height: 120vh;
+  padding-bottom: 4%;
 }
 
 /* NAVBAR */
@@ -72,6 +73,14 @@ body{
 #meaning-display{
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
-  border: solid rgb(207, 204, 204) 1px;
   
+  width: 80%;
+  /* text-align: justify; */
+}
+.meanings{
+  border: solid rgb(207, 204, 204) 1px;
+}
+.definitions-heading{
+  text-align: center;
+  margin-bottom: 5%
 }
