@@ -9,10 +9,9 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 
-export default function TextMobileStepper({definitions, darkMode}) {
+export default function TextMobileStepper({definitions, darkMode, partOfSpeech, phonetics}) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -43,6 +42,8 @@ export default function TextMobileStepper({definitions, darkMode}) {
         
       </Paper> */}
       <Box sx={{  width: '100%',  margin: 0, marginBottom: "5%" }}>
+        <h2 style={styles}>{phonetics}</h2>
+        <h3 style={styles}>{partOfSpeech[activeStep]}</h3>
         <p style={styles}>{definitions[activeStep]}</p>
       </Box>
       <MobileStepper

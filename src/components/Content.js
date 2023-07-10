@@ -7,14 +7,12 @@ const Content = ({darkMode}) => {
   const [dictionaryData, setDictionaryData] = React.useState({});
   const [word, setWord] = React.useState('');
   const [meanings, setMeanings] = React.useState([]);
-  const [phoneticsData, setPhoneticsData] = React.useState([]);
+  const [phonetics, setPhonetics] = React.useState([]);
   const [displaySubheading, setDisplaySubheading] = React.useState(false);
   
 
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
 
-  
-  
 
   const handleSubmit = (e) =>{
     e.preventDefault()
@@ -28,12 +26,12 @@ const Content = ({darkMode}) => {
 
       fetch(url)
       .then(res => res.json())
-      .then(data => setPhoneticsData(data[0].phonetics))
+      .then(data => setPhonetics(data[0].phonetics[1].text))
 
       setDisplaySubheading(true)
   }
 
-  console.log(dictionaryData);
+  console.log(phonetics);
 
   const fontStyles = {
     color: darkMode? "white" : "black"
@@ -46,8 +44,11 @@ const Content = ({darkMode}) => {
       return definition.definition;
     });
   })
-  console.log(definitions);
 
+  const partOfSpeech = meanings.map(meaning =>{
+    return meaning.partOfSpeech;
+  })
+  
       const handleChange = (e) =>{
         setWord(e.target.value);
       }
@@ -65,9 +66,12 @@ const Content = ({darkMode}) => {
             
             {displaySubheading && 
             <Container id="meaning-display">
-              <h2 style={fontStyles} className="definitions-heading"> Here are some definitions</h2>
+              <h2 style={fontStyles} className="definitions-heading">Here are some definitions</h2>
                 <div className="meanings">
-                  <Carousel definitions = {definitions} darkMode = {darkMode}/>
+                  <Carousel definitions = {definitions} 
+                            darkMode = {darkMode}
+                            partOfSpeech = {partOfSpeech}
+                            phonetics = {phonetics}/>
                 </div>
                
             </Container>
