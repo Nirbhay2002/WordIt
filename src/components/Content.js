@@ -52,16 +52,16 @@ const Content = ({darkMode}) => {
       const handleChange = (e) =>{
         setWord(e.target.value);
       }
-
+      
 
     return ( 
         <Container>
           <h1 className="large-word-heading" style={fontStyles}>{word? word: "START bY TYpInG a WORd.."}</h1>
             <form onSubmit={handleSubmit} className="input-form">
         
-                <TextField id="outlined-basic" label="Enter a word" variant="outlined" name="word" onChange={handleChange} /><br /><br />
+                <TextField id="outlined-basic" label="Enter a word" variant="outlined" name="word" onChange={handleChange} /> 
+                <br /><br />
                 <button>Search</button>
-
             </form>
             
             {displaySubheading && 
